@@ -4,30 +4,31 @@ import { useLang } from '../i18n/LangContext.jsx';
 import { subjectName, topicName } from '../lib/stats.js';
 import ResultView from './ResultView.jsx';
 
-// Har bir savol uchun beriladigan vaqt (soniya)
-export const SECONDS_PER_QUESTION = 12;
+// Butun test uchun beriladigan umumiy vaqt: 20 daqiqa (30 ta savol)
+// Har bir savolga 40 soniya: 30 ta savol = 20 daqiqa, 5 ta mashq = 3:20
+export const SECONDS_PER_QUESTION = 40;
+const fmt = (sec) => `${String(Math.floor(Math.max(sec, 0) / 60)).padStart(2, '0')}:${String(Math.max(sec, 0) % 60).padStart(2, '0')}`;
 
 export default function QuizSession({ questions, meta, onRetake, onExit }) {
   const { t, lang } = useLang();
-  const total = questions.length;
+   const total = questions.length;
+  const totalSeconds = total * SECONDS_PER_QUESTION;
   const [i, setI] = useState(0);
   const [answers, setAnswers] = useState(() => Array(total).fill(null));
-  const [left, setLeft] = useState(SECONDS_PER_QUESTION);
+  const [left, setLeft] = useState(totalSeconds);
   const [done, setDone] = useState(false);
 
-  // Savol almashganda (oldinga ham, orqaga ham) taymer qaytadan 12 soniyadan boshlanadi
+  // Umumiy taymer: savol almashganda qayta boshlanmaydi
   useEffect(() => {
     if (done) return undefined;
-    setLeft(SECONDS_PER_QUESTION);
     const id = setInterval(() => setLeft((s) => s - 1), 1000);
     return () => clearInterval(id);
-  }, [i, done]);
+  }, [done]);
 
-  // Vaqt tugasa — javob (bo‘lsa) saqlanib, keyingi savolga avtomatik o‘tiladi
+  // Vaqt tugasa — test avtomatik yakunlanadi (belgilangan javoblar hisobga olinadi)
   useEffect(() => {
-    if (!done && left <= 0) goNext();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [left]);
+    if (!done && left <= 0) setDone(true);
+  }, [left, done]);
 
   if (done) {
     return <ResultView questions={questions} answers={answers} meta={meta} onRetake={onRetake} onExit={onExit} />;
@@ -36,7 +37,7 @@ export default function QuizSession({ questions, meta, onRetake, onExit }) {
   const q = questions[i];
   const sel = answers[i];
   const last = i + 1 >= total;
-  const low = left <= 4;
+  const low = left <= 60;
 
   function goNext() {
     if (i + 1 >= total) setDone(true); else setI(i + 1);
@@ -52,8 +53,8 @@ export default function QuizSession({ questions, meta, onRetake, onExit }) {
       <div className="progress"><span style={{ width: `${(i / total) * 100}%` }} /></div>
       <div className="quiz-timer" role="timer" aria-live="off">
         <Timer size={16} className={low ? 'low' : ''} />
-        <div className="timer-bar"><span key={i} className={low ? 'low' : ''} style={{ width: `${Math.max(left, 0) / SECONDS_PER_QUESTION * 100}%` }} /></div>
-        <span className={`timer-num ${low ? 'low' : ''}`}>{Math.max(left, 0)} {t('sec')}</span>
+       <div className="timer-bar"><span className={low ? 'low' : ''} style={{ width: `${Math.max(left, 0) / totalSeconds * 100}%` }} /></div>
+        <span className={`timer-num ${low ? 'low' : ''}`}>{fmt(left)}</span>
       </div>
       <h2 className="quiz-q">{q.q}</h2>
       <div className="options">

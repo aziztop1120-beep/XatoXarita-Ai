@@ -24,7 +24,7 @@
 .timer-bar { flex: 1; height: 8px; border-radius: 99px; background: var(--track); overflow: hidden; }
 .timer-bar span { display: block; height: 100%; border-radius: 99px; background: var(--good); transition: width 1s linear; }
 .timer-bar span.low { background: var(--bad); }
-.timer-num { font-weight: 700; min-width: 46px; text-align: right; font-variant-numeric: tabular-nums; color: var(--text); }
+.timer-num { font-weight: 700; min-width: 56px; text-align: right; font-variant-numeric: tabular-nums; color: var(--text); }
 .timer-num.low, .quiz-timer svg.low { color: var(--bad); }
 
 /* Result */
