@@ -1,7 +1,5 @@
 import { generateAll } from './qgen.js';
-import { FRONTEND_QUESTIONS } from './frontendQuestions.js';
-import { BACKEND_QUESTIONS } from './backendQuestions.js';
-import { BACKEND_MORE } from './backendMore.js';
+import { FRONT_EXTRA, BACKEND_SIMPLE } from './simpleBank.js';
 import { UZ_QUESTIONS } from './uzQuestions.js';
 
 // Savollar banki. Matematika/fizika savollari generator orqali (har mavzuda 36 ta, har yuklanishda yangi parametrlar bilan),
@@ -88,17 +86,17 @@ export const QUESTIONS = [
 
   q('c1', 'css', 'CSS nimaning qisqartmasi?', ['Computer Style Sheets', 'Cascading Style Sheets', 'Creative Style System', 'Colorful Style Sheets'], 1, 'CSS — Cascading Style Sheets, ya’ni kaskadli stillar jadvali.'),
   q('c2', 'css', 'Matn rangini o‘zgartiruvchi CSS xossasi qaysi?', ['font-color', 'text-color', 'color', 'background'], 2, 'Matn rangi color xossasi bilan beriladi. Fon rangi — background-color.'),
-  q('c3', 'css', 'Elementning fon rangini beruvchi xossa qaysi?', ['bgcolor', 'background-color', 'color-bg', 'fill-color'], 1, 'background-color: red; — fonni qizil qiladi.'),
+  q('c3', 'css', 'Elementning fon rangini beruvchi xossa qaysi?', ['background-paint', 'background-color', 'bg-color-fill', 'background-tint'], 1, 'background-color: red; — fonni qizil qiladi.'),
   q('c4', 'css', 'class="karta" bo‘lgan elementni CSS da qanday tanlaymiz?', ['.karta', '#karta', 'karta', '*karta'], 0, 'Class selektori nuqta (.) bilan boshlanadi.'),
   q('c5', 'css', 'id="menyu" bo‘lgan elementni CSS da qanday tanlaymiz?', ['.menyu', '&menyu', '#menyu', '@menyu'], 2, 'ID selektori panjara (#) bilan boshlanadi.'),
-  q('c6', 'css', 'margin xossasi nimani bildiradi?', ['Element ichidagi bo‘sh joy', 'Elementdan tashqaridagi bo‘sh joy', 'Chegara qalinligi', 'Shrift o‘lchami'], 1, 'margin — tashqi masofa, padding — ichki masofa.'),
-  q('c7', 'css', 'padding xossasi nimani bildiradi?', ['Tashqi masofa', 'Chegara rangi', 'Element ichida, mazmun bilan chegara orasidagi bo‘sh joy', 'Element kengligi'], 2, 'padding — elementning ichki bo‘sh joyi.'),
+  q('c6', 'css', 'margin xossasi nimani bildiradi?', ['Ichki bo‘sh joy', 'Tashqi bo‘sh joy', 'Chegara qalinligi', 'Shrift o‘lchami'], 1, 'margin — tashqi masofa, padding — ichki masofa.'),
+  q('c7', 'css', 'padding xossasi nimani bildiradi?', ['Elementdan tashqaridagi masofa', 'Chegara chizig‘ining rangi', 'Mazmun atrofidagi ichki masofa', 'Elementning umumiy kengligi'], 2, 'padding — elementning ichki bo‘sh joyi.'),
   q('c8', 'css', 'Flexbox ni yoqish uchun qaysi yozuv ishlatiladi?', ['display: flex;', 'position: flex;', 'layout: flex;', 'flex: on;'], 0, 'Konteynerga display: flex berilsa, ichidagi elementlar flex-element bo‘ladi.'),
-  q('c9', 'css', 'Flex konteynerda elementlarni asosiy o‘q bo‘ylab markazlash uchun nima yoziladi?', ['text-align: top;', 'justify-content: center;', 'float: center;', 'margin: flex;'], 1, 'justify-content — asosiy o‘q, align-items — ko‘ndalang o‘q bo‘yicha joylashtiradi.'),
+  q('c9', 'css', 'Flex konteynerda elementlarni asosiy o‘q bo‘ylab markazlash uchun nima yoziladi?', ['justify-text: center;', 'justify-content: center;', 'align-flex: center;', 'flex-center: true;'], 1, 'justify-content — asosiy o‘q, align-items — ko‘ndalang o‘q bo‘yicha joylashtiradi.'),
   q('c10', 'css', 'Shrift o‘lchamini belgilaydigan xossa qaysi?', ['text-size', 'font-style', 'size', 'font-size'], 3, 'font-size: 16px; — shrift o‘lchami.'),
   q('c11', 'css', 'Element atrofiga ramka chizish uchun qaysi xossa ishlatiladi?', ['border', 'frame', 'stroke', 'edge'], 0, 'border: 1px solid black; — ramka qalinligi, turi va rangini beradi.'),
   q('c12', 'css', 'Sichqoncha elementning ustiga kelganda ishlaydigan pseudo-klass qaysi?', [':click', ':focus', ':hover', ':active'], 2, ':hover — kursor element ustida turganda.'),
-  q('c13', 'css', 'Tashqi CSS faylini HTML ga ulashning to‘g‘ri usuli qaysi?', ['<style src="style.css">', '<link rel="stylesheet" href="style.css">', '<css href="style.css">', '<script href="style.css">'], 1, 'Tashqi stil <head> ichida <link rel="stylesheet" href="..."> bilan ulanadi.'),
+  q('c13', 'css', 'Tashqi CSS faylini HTML ga ulashning to‘g‘ri usuli qaysi?', ['<style href="style.css">', '<link rel="stylesheet" href="style.css">', '<css rel="stylesheet" href="style.css">', '<script src="style.css" rel="css">'], 1, 'Tashqi stil <head> ichida <link rel="stylesheet" href="..."> bilan ulanadi.'),
   q('c14', 'css', 'Elementni yashirib, sahifada joyini ham egallamaydigan qiladigan yozuv qaysi?', ['visibility: hidden;', 'opacity: 1;', 'display: none;', 'hide: true;'], 2, 'display: none — element umuman chizilmaydi. visibility: hidden joyini saqlab qoladi.'),
 
   q('t1', 'tailwind', 'Tailwind CSS nima?', ['Utility-first CSS freymvorki', 'JavaScript kutubxonasi', 'Ma’lumotlar bazasi', 'Backend freymvorki'], 0, 'Tailwind — tayyor kichik klasslar (utility) bilan to‘g‘ridan-to‘g‘ri HTML da stil beradigan CSS freymvorki.'),
@@ -117,23 +115,25 @@ export const QUESTIONS = [
   q('t14', 'tailwind', 'Tailwind da qorong‘i rejim (dark mode) uchun qaysi prefiks ishlatiladi?', ['dark:', 'night:', 'black:', 'mode-dark:'], 0, 'dark:bg-gray-900 kabi yoziladi.'),
 
   q('j1', 'js', 'JavaScript da qiymati keyin o‘zgarmaydigan o‘zgaruvchi qaysi kalit so‘z bilan e’lon qilinadi?', ['let', 'const', 'var', 'fixed'], 1, 'const — qayta tayinlab bo‘lmaydigan o‘zgaruvchi.'),
-  q('j2', 'js', '"5" + 3 ifodasining natijasi nima?', ['8', '"8"', '"53"', 'NaN'], 2, '+ operatori matn bilan uchrashsa, birlashtiradi (konkatenatsiya): "53".'),
+  q('j2', 'js', '"5" + 3 ifodasining natijasi nima?', ['8', '"8"', '"53"', 'undefined'], 2, '+ operatori matn bilan uchrashsa, birlashtiradi (konkatenatsiya): "53".'),
   q('j3', 'js', '=== operatori nimani solishtiradi?', ['Faqat qiymatni', 'Qiymat va turni', 'Faqat turni', 'Hech narsani, qiymat beradi'], 1, '=== qat’iy tenglik: 5 === "5" — false, 5 == "5" — true.'),
   q('j4', 'js', 'Massivning oxiriga element qo‘shadigan metod qaysi?', ['pop()', 'shift()', 'add()', 'push()'], 3, 'push() oxiriga qo‘shadi, pop() oxirgisini olib tashlaydi.'),
-  q('j5', 'js', 'Massiv elementlari sonini beradigan xossa qaysi?', ['length', 'size', 'count', 'len'], 0, 'arr.length — massiv uzunligi.'),
-  q('j6', 'js', 'ID bo‘yicha HTML elementni topish metodi qaysi?', ['document.find()', 'document.getId()', 'document.getElementById()', 'window.id()'], 2, 'document.getElementById("nom") — shu ID dagi elementni qaytaradi.'),
+  q('j5', 'js', 'Massiv elementlari sonini beradigan xossa qaysi?', ['length', 'size', 'count', 'length()'], 0, 'arr.length — massiv uzunligi.'),
+  q('j6', 'js', 'ID bo‘yicha HTML elementni topish metodi qaysi?', ['document.getElement()', 'document.findById()', 'document.getElementById()', 'window.getById()'], 2, 'document.getElementById("nom") — shu ID dagi elementni qaytaradi.'),
   q('j7', 'js', 'Konsolga ma’lumot chiqarish uchun nima ishlatiladi?', ['print()', 'console.log()', 'echo()', 'System.out()'], 1, 'console.log() — brauzer konsoliga yozadi.'),
-  q('j8', 'js', 'Quyidagilardan qaysi biri to‘g‘ri arrow funksiya?', ['const f = () => {}', 'function => f {}', 'def f():', 'f = function->{}'], 0, 'Arrow funksiya: const f = (a, b) => a + b;'),
+  q('j8', 'js', 'Quyidagilardan qaysi biri to‘g‘ri arrow funksiya?', ['const f = () => {}', 'function => f {}', 'def f(): pass', 'const f = => () {}'], 0, 'Arrow funksiya: const f = (a, b) => a + b;'),
   q('j9', 'js', 'Massivning har bir elementidan yangi massiv hosil qiladigan metod qaysi?', ['forEach()', 'push()', 'map()', 'splice()'], 2, 'map() yangi massiv qaytaradi, forEach() esa hech narsa qaytarmaydi.'),
-  q('j10', 'js', 'Elementga hodisa (masalan, bosish) tinglovchisini qo‘shish metodi qaysi?', ['listenEvent()', 'setEvent()', 'onEvent()', 'addEventListener()'], 3, 'el.addEventListener("click", funksiya) shaklida ishlatiladi.'),
+  q('j10', 'js', 'Elementga hodisa (masalan, bosish) tinglovchisini qo‘shish metodi qaysi?', ['listenEvent()', 'setEvent()', 'registerEventListener()', 'addEventListener()'], 3, 'el.addEventListener("click", funksiya) shaklida ishlatiladi.'),
   q('j11', 'js', '2 + 2 * 2 ifodasining natijasi nechaga teng?', ['8', '6', '4', '10'], 1, 'Avval ko‘paytirish: 2 * 2 = 4, keyin 2 + 4 = 6.'),
   q('j12', 'js', 'Obyektni JSON matniga aylantiruvchi metod qaysi?', ['JSON.parse()', 'JSON.toString()', 'JSON.stringify()', 'JSON.text()'], 2, 'JSON.stringify() — obyekt → matn, JSON.parse() — matn → obyekt.'),
   q('j13', 'js', 'Quyidagi qiymatlardan qaysi biri JavaScript da false (falsy) hisoblanadi?', ['0', '"0" (matn)', '[] (bo‘sh massiv)', '{} (bo‘sh obyekt)'], 0, 'Falsy: 0, "", null, undefined, NaN, false. Bo‘sh massiv va obyekt true hisoblanadi.'),
   q('j14', 'js', 'Quyidagilardan qaysi biri JavaScript da shartli operator?', ['if (a > b) {}', 'for a in b:', 'when a > b {}', 'check (a > b)'], 0, 'if (shart) { ... } else { ... } — shartli operator.'),
 ];
 
-// Murakkab savollar (har bir mavzuda kamida 30 tadan bo‘lishi uchun qo‘shiladi)
-[...generateAll(36), ...FRONTEND_QUESTIONS, ...BACKEND_QUESTIONS, ...BACKEND_MORE, ...UZ_QUESTIONS].forEach((x) => {
+// Sodda va oson savollar (har bir mavzuda 20 tadan; variantlar bir xil uzunlikda)
+[...generateAll(20), ...FRONT_EXTRA, ...BACKEND_SIMPLE, ...UZ_QUESTIONS].forEach((x) => {
+  const key = x.q + '|' + x.options[x.a];
+  if (QUESTIONS.some((y) => y.q + '|' + y.options[y.a] === key)) return; // takrorni o‘tkazib yuboramiz
   QUESTIONS.push({ ...x, subject: TOPICS[x.topic].subject });
 });
 
